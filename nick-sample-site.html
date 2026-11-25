@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0b1020" />
+  <title>Nick | Personal Portfolio</title>
+  <style>
+    :root {
+      --bg: #0b1020;
+      --panel: rgba(255,255,255,.075);
+      --text: #f4f7ff;
+      --muted: #aab5ce;
+      --accent: #7c9cff;
+      --accent2: #65e6c2;
+      --line: rgba(255,255,255,.13);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 15% 15%, rgba(83,111,255,.22), transparent 32rem),
+        radial-gradient(circle at 85% 30%, rgba(57,220,183,.13), transparent 28rem),
+        var(--bg);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif;
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    .wrap { width: min(1100px, calc(100% - 40px)); margin: auto; }
+    header { padding: 24px 0; }
+    nav { display:flex; align-items:center; justify-content:space-between; gap:20px; }
+    .brand { font-weight:800; letter-spacing:.08em; font-size:1.05rem; }
+    .brand span { color:var(--accent2); }
+    .navlinks { display:flex; gap:26px; color:var(--muted); font-size:.92rem; }
+    .navlinks a:hover { color:var(--text); }
+    .hero { min-height: 76vh; display:grid; grid-template-columns:1.25fr .75fr; align-items:center; gap:55px; padding:70px 0 90px; }
+    .eyebrow { display:inline-flex; align-items:center; gap:9px; color:var(--accent2); font-size:.82rem; letter-spacing:.14em; text-transform:uppercase; font-weight:700; }
+    .dot { width:8px; height:8px; border-radius:50%; background:var(--accent2); box-shadow:0 0 18px var(--accent2); }
+    h1 { font-size:clamp(3.2rem, 8vw, 6.5rem); line-height:.98; letter-spacing:-.065em; margin:22px 0; }
+    h1 span { background:linear-gradient(100deg, var(--accent), var(--accent2)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+    .intro { max-width:610px; color:var(--muted); font-size:1.12rem; }
+    .actions { display:flex; flex-wrap:wrap; gap:14px; margin-top:32px; }
+    .btn { display:inline-flex; align-items:center; justify-content:center; padding:12px 20px; border-radius:999px; font-weight:700; border:1px solid var(--line); transition:.2s ease; }
+    .btn.primary { color:#08111d; background:linear-gradient(110deg,var(--accent),var(--accent2)); border:0; }
+    .btn:hover { transform:translateY(-3px); }
+    .visual { position:relative; min-height:360px; display:grid; place-items:center; }
+    .orb { width:min(310px, 75vw); aspect-ratio:1; border-radius:50%; background:linear-gradient(145deg,rgba(124,156,255,.95),rgba(101,230,194,.72)); filter:drop-shadow(0 25px 70px rgba(84,135,255,.25)); position:relative; }
+    .orb:before { content:"N"; position:absolute; inset:0; display:grid; place-items:center; color:rgba(8,16,32,.82); font-size:11rem; font-weight:900; letter-spacing:-.1em; }
+    .float-card { position:absolute; right:0; bottom:22px; padding:15px 18px; border:1px solid var(--line); border-radius:16px; background:rgba(16,24,45,.85); backdrop-filter:blur(14px); box-shadow:0 20px 50px rgba(0,0,0,.25); }
+    .float-card strong { display:block; font-size:1.05rem; }
+    .float-card small { color:var(--muted); }
+    section { padding:60px 0; }
+    .section-head { margin-bottom:28px; }
+    .section-head p { color:var(--muted); margin:6px 0 0; }
+    h2 { font-size:clamp(1.8rem,4vw,2.6rem); letter-spacing:-.04em; margin:0; }
+    .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+    .card { padding:25px; border:1px solid var(--line); border-radius:20px; background:var(--panel); backdrop-filter:blur(12px); }
+    .card .icon { font-size:1.6rem; }
+    .card h3 { margin:12px 0 7px; }
+    .card p { color:var(--muted); margin:0; font-size:.95rem; }
+    .about { display:grid; grid-template-columns:.8fr 1.2fr; gap:35px; align-items:start; }
+    .about-box { padding:28px; border-left:3px solid var(--accent2); background:linear-gradient(90deg,rgba(101,230,194,.08),transparent); border-radius:0 18px 18px 0; color:var(--muted); }
+    .tags { display:flex; flex-wrap:wrap; gap:10px; margin-top:18px; }
+    .tag { border:1px solid var(--line); color:#dce5ff; background:rgba(255,255,255,.045); border-radius:999px; padding:7px 12px; font-size:.85rem; }
+    .contact { text-align:center; padding:55px 25px; border:1px solid var(--line); border-radius:26px; background:linear-gradient(135deg,rgba(124,156,255,.13),rgba(101,230,194,.08)); }
+    .contact p { color:var(--muted); max-width:540px; margin:12px auto 24px; }
+    footer { padding:35px 0; color:var(--muted); font-size:.85rem; text-align:center; }
+    @media (max-width:760px) {
+      .navlinks { gap:13px; font-size:.82rem; }
+      .hero { grid-template-columns:1fr; padding-top:55px; gap:20px; }
+      .visual { min-height:300px; }
+      .grid { grid-template-columns:1fr; }
+      .about { grid-template-columns:1fr; }
+      .float-card { right:5%; }
+    }
+    @media (max-width:430px) {
+      .navlinks a:nth-child(2) { display:none; }
+      .wrap { width:min(100% - 28px, 1100px); }
+    }
+  </style>
+</head>
+<body>
+  <header class="wrap">
+    <nav aria-label="Main navigation">
+      <a class="brand" href="#home">NICK<span>.</span></a>
+      <div class="navlinks">
+        <a href="#about">About</a>
+        <a href="#focus">What I do</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero wrap" id="home">
+      <div>
+        <div class="eyebrow"><span class="dot"></span> Welcome to my space</div>
+        <h1>Hi, I'm<br><span>Nick.</span></h1>
+        <p class="intro">Cloud enthusiast, technology explorer, and lifelong learner. I enjoy turning complex ideas into practical solutions and building things that make a difference.</p>
+        <div class="actions">
+          <a class="btn primary" href="#about">Explore my site <span aria-hidden="true">&nbsp;↗</span></a>
+          <a class="btn" href="#contact">Get in touch</a>
+        </div>
+      </div>
+      <div class="visual" aria-label="Decorative Nick monogram">
+        <div class="orb"></div>
+        <div class="float-card"><strong>Curious by nature.</strong><small>Building skills, one step at a time.</small></div>
+      </div>
+    </section>
+
+    <section class="wrap" id="about">
+      <div class="about">
+        <div class="section-head">
+          <div class="eyebrow">A little about me</div>
+          <h2>Learning. Building. Improving.</h2>
+        </div>
+        <div class="about-box">
+          I'm interested in cloud engineering, DevOps, automation, and the technology shaping our world. This is my personal corner of the internet — a place to share what I'm learning and what I'm building.
+          <div class="tags">
+            <span class="tag">Cloud Engineering</span>
+            <span class="tag">DevOps</span>
+            <span class="tag">Docker</span>
+            <span class="tag">Azure</span>
+            <span class="tag">Terraform</span>
+            <span class="tag">Git & GitHub</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="wrap" id="focus">
+      <div class="section-head">
+        <div class="eyebrow">My areas of interest</div>
+        <h2>What I like working on</h2>
+        <p>A few topics that keep me curious and motivated.</p>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <div class="icon">☁️</div>
+          <h3>Cloud & Infrastructure</h3>
+          <p>Exploring cloud platforms, infrastructure design, and reliable systems.</p>
+        </article>
+        <article class="card">
+          <div class="icon">⚙️</div>
+          <h3>DevOps & Automation</h3>
+          <p>Learning CI/CD, containers, scripting, and ways to streamline delivery.</p>
+        </article>
+        <article class="card">
+          <div class="icon">💡</div>
+          <h3>Technology & Ideas</h3>
+          <p>Understanding how technology works and finding useful ways to apply it.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="wrap" id="contact">
+      <div class="contact">
+        <div class="eyebrow">Let's connect</div>
+        <h2>Have an idea or a project?</h2>
+        <p>I'm always happy to connect, exchange ideas, and learn something new. Add your preferred email or social profile here.</p>
+        <a class="btn primary" href="mailto:hello@example.com">Email me ↗</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap">© <span id="year"></span> Nick. Made with curiosity and a little code.</footer>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
